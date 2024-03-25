@@ -790,9 +790,13 @@ class PlayState extends MusicBeatState
 	var alreadychange:Bool = false;
 	var alreadychange2:Bool = true;
 	var oldTV:Bool;
+	#if NOT_ALLOWED
 	public var oldFX:OldTVShader;
+	#end 
 	public var contrastFX:BrightnessContrastShader;
-	var beatend:YCBUEndingShader;
+	#if NOT_ALLOWED
+	var beatend:YCBUEndingShader; 
+	#end 
 	var angel:AngelShader;
 
 	var dupe:CamDupeShader;
@@ -5661,9 +5665,11 @@ class PlayState extends MusicBeatState
 				camHUD.setFilters([new ShaderFilter(vcr), new ShaderFilter(border),]);
 
 				if(curStage == 'nesbeat'){
+					#if NOT_ALLOWED
 					beatend = new YCBUEndingShader();
+					#end 
 					angel = new AngelShader();
-					camGame.setFilters([new ShaderFilter(vcr), new ShaderFilter(border), new ShaderFilter(beatend), new ShaderFilter(angel)]);
+					camGame.setFilters([new ShaderFilter(vcr), new ShaderFilter(border), #if NOT_ALLOWED new ShaderFilter(beatend),#end  new ShaderFilter(angel)]);
 					camEst.setFilters([new ShaderFilter(vcr), new ShaderFilter(border), new ShaderFilter(angel)]);
 				}
 
@@ -5671,15 +5677,17 @@ class PlayState extends MusicBeatState
 				{
 					if (ClientPrefs.filtro85)
 					{
+						#if NOT_ALLOWED
 						oldFX = new OldTVShader();
+						#end 
 
-						camGame.setFilters([new ShaderFilter(vcr), new ShaderFilter(oldFX), new ShaderFilter(border)]);
-						camEst.setFilters([new ShaderFilter(vcr), new ShaderFilter(oldFX), new ShaderFilter(border)]);
-						camHUD.setFilters([new ShaderFilter(vcr), new ShaderFilter(oldFX), new ShaderFilter(border)]);
+						camGame.setFilters([new ShaderFilter(vcr), #if NOT_ALLOWED new ShaderFilter(oldFX),#end new ShaderFilter(border)]);
+						camEst.setFilters([new ShaderFilter(vcr), #if NOT_ALLOWED new ShaderFilter(oldFX),#end  new ShaderFilter(border)]);
+						camHUD.setFilters([new ShaderFilter(vcr), #if NOT_ALLOWED new ShaderFilter(oldFX),#end  new ShaderFilter(border)]);
 
 						contrastFX = new BrightnessContrastShader();
 
-						camGame.setFilters([new ShaderFilter(contrastFX), new ShaderFilter(vcr), new ShaderFilter(oldFX), new ShaderFilter(border)]);
+						camGame.setFilters([new ShaderFilter(contrastFX), new ShaderFilter(vcr),#if NOT_ALLOWED new ShaderFilter(oldFX),#end  new ShaderFilter(border)]);
 					}
 				}
 			}
@@ -5694,12 +5702,14 @@ class PlayState extends MusicBeatState
 		{
 			if (ClientPrefs.filtro85)
 			{
+				#if NOT_ALLOWED
 				oldFX = new OldTVShader();
 
 				camGame.setFilters([new ShaderFilter(oldFX)]);
 				camEst.setFilters([new ShaderFilter(oldFX)]);
 				camHUD.setFilters([new ShaderFilter(oldFX)]);
 				FlxG.camera.setFilters([new ShaderFilter(oldFX)]);
+				#end 
 			}
 		}
 
@@ -7243,7 +7253,9 @@ class PlayState extends MusicBeatState
 
 		if (oldTV && ClientPrefs.filtro85)
 		{
+			#if NOT_ALLOWED
 			oldFX.update(elapsed);
+			#end 
 		}
 
 		if(curStage == 'piracy'){
@@ -7282,7 +7294,9 @@ class PlayState extends MusicBeatState
 				if(ClientPrefs.filtro85 && endingnes){
 					val += elapsed;
 					val /= 4;
+					#if NOT_ALLOWED
 					beatend.update(val, elapsed);
+					#end 
 				}
 			}
 		

@@ -1,5 +1,5 @@
 package;
-
+#if NOT_ALLOWED
 import flixel.math.FlxMath;
 import flixel.system.FlxAssets.FlxShader;
 import haxe.Timer;
@@ -133,3 +133,4 @@ class OldTVShader extends FlxShader
 		iTime.value[0] += elapsed;
 	}
 }
+#end 

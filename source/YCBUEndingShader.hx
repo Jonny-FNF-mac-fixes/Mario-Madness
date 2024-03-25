@@ -1,5 +1,5 @@
 package;
-
+#if NOT_ALLOWED
 import flixel.math.FlxMath;
 import flixel.system.FlxAssets.FlxShader;
 import haxe.Timer;
@@ -86,3 +86,4 @@ class YCBUEndingShader extends FlxShader
 		intensity.value[0] = FlxMath.bound(intensity.value[0] + amount, 0, 1);
 	}
 }
+#end 

@@ -569,10 +569,12 @@ class GameOverSubstate extends MusicBeatSubstate
 				soCoolButton.alpha = 0;
 			}
 		}
-
+		
+        #if NOT_ALLOWED
 		if(lePlayState.oldFX != null && ClientPrefs.filtro85){
 		lePlayState.oldFX.update(elapsed);
 		}
+		#end 
 
 		if(lePlayState.staticShader != null){
 			lePlayState.staticShader.update(elapsed);
